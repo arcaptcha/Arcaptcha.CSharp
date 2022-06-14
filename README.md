@@ -26,8 +26,8 @@ Arcaptcha for .NET is one of the most popular and well-documented Arcaptcha libr
 <pre><code>&lt;appSettings&gt;
 &lt;add key="ArcaptchaSiteKey" value="Your site key" /&gt;
 &lt;add key="ArcaptchaSecretKey" value="Your secret key" /&gt;
-&lt;add key="ArcaptchaVerificationUrl" value="Arcaptcha Verification URL (https://api.arcaptcha.ir/arcaptcha/api/verify)" /&gt;
-&lt;add key="ArcaptchaWidgetScriptUrl" value="Arcaptcha widget script url (https://widget.arcaptcha.ir/1/api.js)" /&gt;
+&lt;add key="ArcaptchaVerificationUrl" value="Arcaptcha Verification URL (https://arcaptcha.co/2/siteverify)" /&gt;
+&lt;add key="ArcaptchaWidgetScriptUrl" value="Arcaptcha widget script url (https://widget.arcaptcha.co/2/api.js)" /&gt;
 &lt;/appSettings&gt;
 </code></pre>
 <p><strong>ASP.NET Core</strong></p>
@@ -35,8 +35,8 @@ Arcaptcha for .NET is one of the most popular and well-documented Arcaptcha libr
 <pre><code>"Arcaptcha":{ 
     "SiteKey": "Your site key",
     "SecretKey": "Your secret key",
-    "VerificationUrl": "Arcaptcha Verification URL (https://api.arcaptcha.ir/arcaptcha/api/verify)",
-    "WidgetScriptUrl": "Arcaptcha widget script url (https://widget.arcaptcha.ir/1/api.js)"
+    "VerificationUrl": "Arcaptcha Verification URL (https://arcaptcha.co/2/siteverify)",
+    "WidgetScriptUrl": "Arcaptcha widget script url (https://widget.arcaptcha.co/2/api.js)"
 } 
 </code></pre>
 <p>In the <strong>ConfigureServices</strong> method of the <strong>Startup</strong> class, add the following line of code:</p>
@@ -115,23 +115,24 @@ else
 
 if (this.VerifyArcaptchaResponse().Success)
 {
-    ModelState.AddModelError("", "Incorrect captcha answer.");
+ModelState.AddModelError("", "Incorrect captcha answer.");
 }
 
 //Or Method Two
 ArcaptchaVerificationHelper ArcaptchaHelper = this.GetArcaptchaVerificationHelper();
 if (String.IsNullOrEmpty(ArcaptchaHelper.Response))
 {
-    ModelState.AddModelError("", "Captcha answer cannot be empty.");
-    return View(model);
+ModelState.AddModelError("", "Captcha answer cannot be empty.");
+return View(model);
 }
 ArcaptchaVerificationResult ArcaptchaResult = ArcaptchaHelper.VerifyArcaptchaResponse();
 if (ArcaptchaResult.Success)
 {
-    ModelState.AddModelError("", "Incorrect captcha answer.");
+ModelState.AddModelError("", "Incorrect captcha answer.");
 }
 
 </code></pre>
+
 <h2>Attributes</h2>
 <p>The attributes are used to control the behavior and appearance of the Arcaptcha widget. They are specified in one of the three ways:</p>
 <ul>

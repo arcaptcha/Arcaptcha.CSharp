@@ -56,7 +56,7 @@ namespace Arcaptcha.Net
             SecretKey = secretKey;
             SiteKey = siteKey;
             VerificationUrl = verificationUrl.StartsWith("http") ? verificationUrl : "https://" + verificationUrl;
-            Response = request.Form["arcaptcha-token"];
+            Response = request.Form["arcaptcha-response"];
         }
 
         #endregion Constructors
@@ -107,7 +107,7 @@ namespace Arcaptcha.Net
         /// <returns>Returns the result as a value of the <see cref="ArcaptchaVerificationResult"/> enum.</returns>
         public ArcaptchaVerificationResult VerifyArcaptchaResponse()
         {
-            string postData = $"{{ \"secret_key\": \"{SecretKey}\",\"challenge_id\":\"{Response}\",\"site_key\":\"{SiteKey}\"}}";
+            string postData = $"{{ \"secret\": \"{SecretKey}\",\"response\":\"{Response}\",\"sitekey\":\"{SiteKey}\"}}";
 
             var content = new StringContent(postData, Encoding.UTF8, "application/json");
 
