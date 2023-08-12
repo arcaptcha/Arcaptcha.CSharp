@@ -113,7 +113,7 @@ else
 <pre><code>
 ...
 
-if (this.VerifyArcaptchaResponse().Success)
+if (!this.VerifyArcaptchaResponse().Success)
 {
     ModelState.AddModelError("", "Incorrect captcha answer.");
 }
@@ -126,7 +126,7 @@ if (String.IsNullOrEmpty(ArcaptchaHelper.Response))
     return View(model);
 }
 ArcaptchaVerificationResult ArcaptchaResult = ArcaptchaHelper.VerifyArcaptchaResponse();
-if (ArcaptchaResult.Success)
+if (!ArcaptchaResult.Success)
 {
     ModelState.AddModelError("", "Incorrect captcha answer.");
 }
